@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestControllerAdvice
-public class ErrodeValicadaoHandler {
+public class ErrodeValidacaoHandler {
 
     @Autowired
     private MessageSource messageSource;
@@ -23,9 +23,8 @@ public class ErrodeValicadaoHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public List<ErroDeFormularioDto>handle(MethodArgumentNotValidException exception) {
         List<ErroDeFormularioDto> dto = new ArrayList<>();
-
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        fieldErros.forEach(e -> {
+        fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
             ErroDeFormularioDto erro = new ErroDeFormularioDto(e.getField(), mensagem);
             dto.add(erro);
