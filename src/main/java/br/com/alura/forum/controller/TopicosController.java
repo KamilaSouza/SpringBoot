@@ -2,6 +2,7 @@ package br.com.alura.forum.controller;
 
 import br.com.alura.forum.Repository.CursoRepository;
 import br.com.alura.forum.Repository.TopicoRepository;
+import br.com.alura.forum.controller.dto.TopicoDto;
 import br.com.alura.forum.controller.form.TopicoForm;
 import br.com.alura.forum.modelo.Topico;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,9 @@ public class TopicosController {
     }
 
     @GetMapping("/{id}")
-    public TopicoDto detalhar(@PathVariable Long id) {
+    public DetalhesdoTopicoDto detalhar(@PathVariable Long id) {
        Topico topico = topicoRepository.getOne(id);
-       return new TopicoDto(topico);
+       return new DetalhesdoTopicoDto(topico);
 
     }
 
